@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Product</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    <!-- WISWIG Editor -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/editor.css" type="text/css" rel="stylesheet" th:href="@{/css/editor.css}"/>
+    <script src="../js/editor.js" th:href="@{/js/editor.js}"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img th:src="@{/images/icons/profile.png}" width="48" height="48" alt="Profile">
+            <h5 th:utext="${userNameProd}"></h5>
+            <strong></strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#" th:href="@{/admin/home}">
+                    <i class="glyphicon glyphicon-home"></i>Home</a>
+            </li>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-gift"></i>Products</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li><a th:href="@{/admin/products}">All Products</a></li>
+                    <li class="active"><a href="#" th:href="@{/admin/new}">Add New</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-list"></i>Users</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a href="#">All Users</a></li>
+                    <li><a href="#">Add User</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i>Settings</a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-user"></i>Profile</a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-send"></i>Contact</a>
+            </li>
+        </ul>
+        <ul class="list-unstyled components">
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="glyphicon glyphicon-off"></i>Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" th:href="@{/admin/products}">All Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" th:href="@{/admin/new}">Add New Product</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/save}" th:object="${product}" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="inputBarcode">Barcode</label>
+                                <input type="text" class="form-control" id="inputBarcode" placeholder="Barcode"
+                                       th:field="*{barcode}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Product Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Name"
+                                       th:field="*{name}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputPrice">Price</label>
+                                <input type="number" class="form-control" id="inputPrice" placeholder="Price"
+                                       th:field="*{price}" step="0.01">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputStock">Stock</label>
+                                <input type="number" class="form-control" id="inputStock" placeholder="Stock"
+                                       th:field="*{stock}" step=1>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputHTML">Product description</label>
+                                <input type="text" class="form-control" id="inputHTML" placeholder="Product description"
+                                       th:field="*{description}">
+                            </div>
+
+
+                            <div class="col-md-8" style="text-align: left">
+                                <label for="txtEditor">Product description</label>
+
+
+                                <div id="txtEditor"></div>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                        </div>
+
+                    </form>
+                    <button id="descriptionButton" onclick="getHtml()" class="btn btn-primary">Save description</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getHtml() {
+        document.getElementById("inputHTML").value = $('.Editor-editor').html();
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#txtEditor").Editor();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

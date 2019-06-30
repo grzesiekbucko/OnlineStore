@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img th:src="@{/images/icons/profile.png}" width="48" height="48" alt="Profile">
+            <h5 th:utext="${userNameProd}"></h5>
+            <strong></strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#" th:href="@{/admin/home}">
+                    <i class="glyphicon glyphicon-home"></i>Home</a>
+            </li>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-gift"></i>Products</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="active"><a href="#">All Products</a></li>
+                    <li><a href="#" th:href="@{/admin/new}">Add New</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-list"></i>Users</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a href="#">All Users</a></li>
+                    <li><a href="#">Add User</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i>Settings</a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-user"></i>Profile</a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-send"></i>Contact</a>
+            </li>
+        </ul>
+        <ul class="list-unstyled components">
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="glyphicon glyphicon-off"></i>Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" th:href="@{/admin/products}">All Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" th:href="@{/admin/new}">Add New Product</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Product ID</th>
+                                <th scope="col">Barcode</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Preview</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${products != null}">
+                            <tr scope="row" th:each="product : ${products}">
+                                <td th:text="${product.id}"></td>
+                                <td th:text="${product.barcode}"></td>
+                                <td th:text="${product.name}"></td>
+                                <td th:text="${product.price}"></td>
+                                <td th:text="${product.stock}"></td>
+                                <td><a th:href="@{'/delete/' + ${product.id}}"><i class="material-icons">delete</i></a>
+                                </td>
+                                <td><a th:href="@{'/edit/' + ${product.id}}"><i class="material-icons">edit</i></a>
+                                </td>
+                                <td><a th:href="@{'/preview/' + ${product.id}}"><i class="material-icons">search</i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css   }">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+        <!--===============================================================================================-->
+    </head>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            <form autocomplete="off" action="#" th:action="@{/registration}"
+                  th:object="${user}" method="post" class="login100-form validate-form"
+                  role="form">
+                <span style="text-align: center">
+                    <h1>Registration Form</h1>
+                </span>
+
+                <div class="wrap-input100 validate-input" style="margin-top:40px">
+                    <input type="text" th:field="*{name}" placeholder="Name"
+                           class="input100"/>
+                    <span class="focus-input100"></span>
+                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                           class="validation-message"></label>
+                </div>
+
+
+                <div class="wrap-input100 validate-input">
+                    <input type="text" th:field="*{lastName}"
+                           placeholder="Last Name" class="input100"/>
+                    <span class="focus-input100"></span>
+                    <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                           class="validation-message"></label>
+                </div>
+
+
+                <div class="wrap-input100 validate-input">
+                    <input type="text" th:field="*{email}" placeholder="Email"
+                           class="input100"/>
+                    <span class="focus-input100"></span>
+                    <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                           class="validation-message"></label>
+                </div>
+
+
+                <div class="wrap-input100 validate-input">
+                    <input type="password" th:field="*{password}"
+                           placeholder="Password" class="input100"/>
+                    <span class="focus-input100"></span>
+                    <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                           class="validation-message"></label>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="submit" class="login100-form-btn">Register User</button>
+                    </div>
+                </div>
+
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
+            </form>
+            <form th:action="@{/}" method="get" style="text-align: center; margin-top: 25px">
+                <button class="btn btn-link" type="Submit" style="font-size: 15px">Go To Login Page </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script th:href="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:href="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/vendor/daterangepicker/moment.min.js}"></script>
+<script th:href="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:href="@{/js/main.js}"></script>
+</body>
+</html>

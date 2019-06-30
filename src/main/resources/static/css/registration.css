@@ -1,0 +1,9 @@
+.validation-message {
+    font-style: normal;
+    font-size: 12px;
+    color: #FF1C19;
+}
+body {
+    background: rgb(130,190,253);
+    background: radial-gradient(circle, rgba(130,190,253,1) 0%, rgba(10,139,241,1) 100%);
+}
