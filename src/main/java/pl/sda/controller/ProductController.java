@@ -60,8 +60,12 @@ public class ProductController {
 
     @RequestMapping("/edit/{id}")
     public ModelAndView editProductView(@PathVariable(name = "id") Long id){
-        ModelAndView modelAndView = new ModelAndView("/admin/edit");
+        ModelAndView modelAndView = new ModelAndView("/admin/editor");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
         Product product = productService.get(id);
+        modelAndView.addObject("userNameEdit", user.getName() + " " + user.getLastName());
+        modelAndView.addObject("userEmail", user.getEmail());
         modelAndView.addObject("product", product);
         return modelAndView;
     }
