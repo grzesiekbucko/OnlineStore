@@ -52,7 +52,7 @@ public class ProductController {
         Product product = new Product();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userNameProd", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        modelAndView.addObject("userNameProd",user.getName() + " " + user.getLastName());
         modelAndView.addObject("product", product);
         modelAndView.setViewName("/admin/new");
         return modelAndView;
@@ -80,6 +80,12 @@ public class ProductController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute("product") Product product) {
+        productService.save(product);
+        return "redirect:/admin/products";
+    }
+
+    @RequestMapping(value = "/addPhoto", method = RequestMethod.POST)
+    public String addPhoto(@ModelAttribute("product") Product product) {
         productService.save(product);
         return "redirect:/admin/products";
     }
