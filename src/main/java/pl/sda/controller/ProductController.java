@@ -1,7 +1,9 @@
 package pl.sda.controller;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import pl.sda.buissnes.ProductBoImpl;
+import pl.sda.dto.ProductDto;
 import pl.sda.model.Product;
 import pl.sda.model.User;
 import pl.sda.repository.ProductRepository;
@@ -12,9 +14,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
+import java.util.Base64;
 
 @Controller
 public class ProductController {
@@ -29,6 +32,9 @@ public class ProductController {
     @Autowired
     private final ProductRepository productRepository;
 
+    @Autowired
+    private ProductBoImpl productBo;
+
     public ProductController(ProductService productService, UserService userService, @Qualifier("productRepository") ProductRepository productRepository) {
         this.productService = productService;
         this.userService = userService;
@@ -40,7 +46,7 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userNameProd", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        modelAndView.addObject("userNameProd", user.getName() + " " + user.getLastName());
         modelAndView.addObject("products", productRepository.findAll());
         modelAndView.setViewName("admin/products");
         return modelAndView;
@@ -74,21 +80,18 @@ public class ProductController {
     public ModelAndView previewProduct(@PathVariable(name = "id") Long id){
         ModelAndView modelAndView = new ModelAndView("/admin/card");
         Product product = productService.get(id);
+        byte[] prodPic = product.getPicture();
         modelAndView.addObject("product", product);
+        modelAndView.addObject("picture", Base64.getEncoder().encodeToString(prodPic));
         return modelAndView;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        productService.save(product);
+    public String saveProduct(@ModelAttribute("product") ProductDto product) throws IOException {
+        productBo.saveProduct(product);
         return "redirect:/admin/products";
     }
 
-    @RequestMapping(value = "/addPhoto", method = RequestMethod.POST)
-    public String addPhoto(@ModelAttribute("product") Product product) {
-        productService.save(product);
-        return "redirect:/admin/products";
-    }
 
     @RequestMapping("/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") Long id) {

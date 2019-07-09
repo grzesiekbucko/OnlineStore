@@ -16,6 +16,9 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
+    <link href="/gentella/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+          th:href="@{/gentella/font-awesome/css/font-awesome.min.css}"/>
+
 </head>
 <body>
 <!-- Navbar -->
@@ -103,7 +106,7 @@
             <!--Grid column-->
             <div class="col-md-6 mb-4">
 
-                <img th:src="@{${product.mainPhoto}}" class="img-fluid"
+                <img th:src="${picture} == null ? _ : @{'data:image/png;base64,'+${picture}}" class="img-fluid"
                      alt="">
 
             </div>
@@ -128,10 +131,10 @@
                     </div>
 
                     <p class="lead">
-              <span class="mr-1">
-                <del></del>
+              <span class="mr-1" th:utext="${'Reference: ' + product.model}">
               </span>
-                        <span th:utext="${product.price + ' PLN'}"></span>
+                    <h1 th:utext="${product.price + '0 PLN'}"></h1>
+                    <p><i class="fa fa-send-o"></i>&emsp;Free shipping to European Union</p>
                     </p>
 
                     <p class="lead font-weight-bold" th:utext="${product.name}"></p>
@@ -167,8 +170,6 @@
 
             <!--Grid column-->
             <div class="col-md-6 text-center">
-
-
 
 
                 <h4 class="my-4 h4">Additional information</h4>

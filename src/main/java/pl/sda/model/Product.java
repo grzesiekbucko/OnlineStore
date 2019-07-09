@@ -36,13 +36,14 @@ public class Product {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "mainPhoto", columnDefinition = "text")
-    private String mainPhoto;
+    @Lob
+    @Column(name="picture")
+    private byte[] picture;
 
     public Product() {
     }
 
-    public Product(String model, String name, String brand, String gender, long barcode, double price, int stock, String description, String mainPhoto) {
+    public Product(String model, String name, String brand, String gender, long barcode, double price, int stock, String description, byte[] picture) {
         this.model = model;
         this.name = name;
         this.brand = brand;
@@ -51,15 +52,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.description = description;
-        this.mainPhoto = mainPhoto;
-    }
-
-    public String getMainPhoto() {
-        return mainPhoto;
-    }
-
-    public void setMainPhoto(String mainPhoto) {
-        this.mainPhoto = mainPhoto;
+        this.picture = picture;
     }
 
     public int getId() {
@@ -132,6 +125,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
     @Override

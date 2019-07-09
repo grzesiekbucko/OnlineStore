@@ -41,6 +41,7 @@
     <!-- Custom Theme Style -->
     <link href="/gentella/css/custom.min.css" rel="stylesheet" type="text/css"
           th:href="@{/gentella/css/custom.min.css}"/>
+
 </head>
 
 <body class="nav-md" onload="getHtml()">
@@ -174,7 +175,7 @@
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
                                 <img src="images/img.jpg" alt="" th:src="@{/images/icons/profile.png}"
-                                     th:utext="${userEmail}">
+                                     th:text="${#authentication.name}">
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -303,7 +304,7 @@
                                 <br/>
                                 <form id="editProductForm" data-parsley-validate
                                       class="form-horizontal form-label-left"
-                                      th:action="@{/save}" th:object="${product}" method="post">
+                                      th:action="@{/save}" th:object="${product}" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="productName">Product
                                             Name
@@ -362,6 +363,16 @@
                                                    class="form-control" th:field="*{stock}">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="picture">Add
+                                            image</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="file" class="form-control" id="picture" name="picture" th:field="*{picture}"
+                                                   aria-describedby="pictureHelp"
+                                                   placeholder="Add image">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group" style="display: none">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description
                                         </label>
@@ -409,21 +420,6 @@
 
                             <div class="x_content">
                                 <br/>
-                                <form th:action="@{/addPhoto}" th:object="${product}" method="post">
-                                    <div class="btn-group">
-                                        <a class="btn dropdown-toggle" data-toggle="dropdown"
-                                           title="Insert picture"
-                                           id="mainPictureBtn"><i
-                                                class="fa fa-picture-o"></i></a>
-                                        <div class="dropdown-menu input-append">
-                                            <input type="file" data-role="magic-overlay"
-                                                   data-target="#mainPictureBtn"
-                                                   data-edit="insertImage" th:field="*{mainPhoto}"/>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-success">Submit
-                                    </button>
-                                </form>
 
                             </div>
                         </div>
@@ -628,6 +624,7 @@
 <script src="../gentella/js/starrr.js" th:href="@{/gentella/js/jquery.min.js}"></script>
 <!-- Custom Theme Scripts -->
 <script src="../gentella/js/custom.min.js" th:href="@{/gentella/js/jquery.min.js}"></script>
+
 
 </body>
 </html>
