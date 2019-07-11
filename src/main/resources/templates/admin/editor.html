@@ -300,7 +300,7 @@
                                 <br/>
                                 <form id="editProductForm" data-parsley-validate
                                       class="form-horizontal form-label-left"
-                                      th:action="@{/save}" th:object="${product}" method="post">
+                                      th:action="@{/save}" th:object="${product}" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">Product id
                                         </label>
