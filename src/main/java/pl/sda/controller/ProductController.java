@@ -60,13 +60,13 @@ public class ProductController {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userNameProd",user.getName() + " " + user.getLastName());
         modelAndView.addObject("product", product);
-        modelAndView.setViewName("/admin/new");
+        modelAndView.setViewName("admin/new");
         return modelAndView;
     }
 
     @RequestMapping("/edit/{id}")
     public ModelAndView editProductView(@PathVariable(name = "id") Long id){
-        ModelAndView modelAndView = new ModelAndView("/admin/editor");
+        ModelAndView modelAndView = new ModelAndView("admin/editor");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         Product product = productService.get(id);
@@ -76,9 +76,9 @@ public class ProductController {
         return modelAndView;
     }
 
-    @RequestMapping("/preview/{id}")
+    @RequestMapping(value = "/preview/{id}")
     public ModelAndView previewProduct(@PathVariable(name = "id") Long id){
-        ModelAndView modelAndView = new ModelAndView("/admin/card");
+        ModelAndView modelAndView = new ModelAndView("admin/card");
         Product product = productService.get(id);
         byte[] prodPic = product.getPicture();
         modelAndView.addObject("product", product);
