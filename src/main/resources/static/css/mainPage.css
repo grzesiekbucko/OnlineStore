@@ -1,17 +1,84 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f2f2f2;
+    width: 100%;
+    font-size: 16px;
 }
-#container-main{
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#navbar {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+}
+
+#navbar img {
+    width: 55px;
+    margin-right: 10px;
+}
+
+#navbar i {
+    font-size: 1.25rem;
+}
+
+#navbar li :hover {
+    color: #00aeef;
+}
+
+#myAccount {
+    border-right: 2px solid #7f7c7d;
+    padding-right: 15px;
+    font-size: 1rem;
+}
+
+.badge-notify {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    padding: 2px 6px;
+    position: relative;
+    right: 12px;
+    top: -18px;
+    background: #00aeef !important;
+    border: 1px solid #00aeef !important;
+    color: #fff;
+    display: inline-block;
+    min-width: 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+#container-main {
     padding-right: 0px;
     padding-left: 0px;
 }
+
+#banner-head div {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 56px;
+}
+
 #banner-head img {
     width: 100%;
 }
 
-#menu div{
+#banner-firm div {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 75px;
+}
+
+#banner-firm img{
+    height: 55px;
+}
+
+h4 {
+    text-align: center;
     border-bottom: 2px solid #d6d6d6;
 }
