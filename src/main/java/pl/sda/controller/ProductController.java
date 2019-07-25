@@ -78,7 +78,7 @@ public class ProductController {
 
     @RequestMapping(value = "/preview/{id}")
     public ModelAndView previewProduct(@PathVariable(name = "id") Long id){
-        ModelAndView modelAndView = new ModelAndView("admin/card");
+        ModelAndView modelAndView = new ModelAndView("admin/product-card");
         Product product = productService.get(id);
         byte[] prodPic = product.getPicture();
         modelAndView.addObject("product", product);

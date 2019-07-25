@@ -14,11 +14,13 @@ body {
     position: fixed;
     z-index: 100;
     width: 100%;
+    border-bottom: 1px solid #bebebe;
 }
 
 #navbar img {
     width: 55px;
     margin-right: 10px;
+
 }
 
 #navbar i {
@@ -29,8 +31,8 @@ body {
     color: #00aeef;
 }
 
-#myAccount {
-    border-right: 2px solid #7f7c7d;
+
+.myAccount {
     padding-right: 15px;
     font-size: 1rem;
 }
@@ -54,6 +56,7 @@ body {
     border-radius: 10px;
 }
 
+
 #container-main {
     padding-right: 0px;
     padding-left: 0px;
@@ -74,11 +77,44 @@ body {
     margin-top: 75px;
 }
 
-#banner-firm img{
+#banner-firm img {
     height: 55px;
 }
 
 h4 {
     text-align: center;
     border-bottom: 2px solid #d6d6d6;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #00aeef;
+    border-color: #00aeef;
+}
+
+.row_category div {
+    margin-top: 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.row_category a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.row_category img {
+    margin-bottom: 15px;
+}
+
+.col-lg-3.col-6:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    z-index: 1;
+}
+
+.badge-primary{
+    right: 10px;
+    position: absolute;
+    top: 10px;
+    background-color: #00aeef;
 }
