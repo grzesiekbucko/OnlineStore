@@ -1,6 +1,9 @@
 package pl.sda.model;
 
 import javax.persistence.*;
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,20 +15,27 @@ public class Product {
     @Column(name = "product_id")
     private int id;
 
-    @Column(name ="model")
-    private String model;
-
     @Column(name = "name")
     private String name;
+
+    @Column(name ="model")
+    private String model;
 
     @Column(name = "brand")
     private String brand;
 
-    @Column(name = "gender")
-    private String gender;
+    @Column(name = "option")
+    private String option;
 
-    @Column(name = "barcode")
-    private long barcode;
+    @Column(name = "size")
+    private String size;
+
+    @ManyToOne
+    private Category category;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date creationDate;
 
     @Column(name = "price")
     private double price;
@@ -43,16 +53,27 @@ public class Product {
     public Product() {
     }
 
-    public Product(String model, String name, String brand, String gender, long barcode, double price, int stock, String description, byte[] picture) {
-        this.model = model;
+    public Product(String name, String model, String brand, String option, String size, Category category, Date creationDate, double price, int stock, String description, byte[] picture) {
         this.name = name;
+        this.model = model;
         this.brand = brand;
-        this.gender = gender;
-        this.barcode = barcode;
+        this.option = option;
+        this.size = size;
+        this.category = category;
+        this.creationDate = creationDate;
         this.price = price;
         this.stock = stock;
         this.description = description;
         this.picture = picture;
+    }
+
+    public Product(List<Product> showProduct) {
+
+    }
+
+    public String getImageString(){
+        String imageString = "data:image/png;base64," + Base64.getEncoder().encodeToString(picture);
+        return imageString;
     }
 
     public int getId() {
@@ -63,20 +84,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getBrand() {
@@ -87,20 +108,36 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getGender() {
-        return gender;
+    public String getOption() {
+        return option;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setOption(String option) {
+        this.option = option;
     }
 
-    public long getBarcode() {
-        return barcode;
+    public String getSize() {
+        return size;
     }
 
-    public void setBarcode(long barcode) {
-        this.barcode = barcode;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public double getPrice() {
@@ -128,41 +165,13 @@ public class Product {
     }
 
     public byte[] getPicture() {
+
         return picture;
     }
 
     public void setPicture(byte[] picture) {
+
         this.picture = picture;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Product{");
-        sb.append("id=").append(id);
-        sb.append(", model='").append(model).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", brand='").append(brand).append('\'');
-        sb.append(", gender='").append(gender).append('\'');
-        sb.append(", barcode=").append(barcode);
-        sb.append(", price=").append(price);
-        sb.append(", stock=").append(stock);
-        sb.append(", description='").append(description).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id == product.id &&
-                Objects.equals(model, product.model);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, model);
     }
 }
 

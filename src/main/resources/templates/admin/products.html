@@ -308,14 +308,19 @@
                             <div class="x_content">
                                 <p class="text-muted font-13 m-b-30">
                                 </p>
-                                <table id="datatable-buttons" class="table table-striped table-bordered">
+                                <table class="table table-sm">
                                     <thead>
                                     <tr>
                                         <th scope="col">Product ID</th>
-                                        <th scope="col">Barcode</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Model</th>
+                                        <th scope="col">Brand</th>
+                                        <th scope="col">Option</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col">Category</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Stock</th>
+                                        <th scope="col">Creation date</th>
                                         <th scope="col">Delete</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Preview</th>
@@ -324,10 +329,15 @@
                                     <tbody th:if="${products != null}">
                                     <tr scope="row" th:each="product : ${products}">
                                         <td th:text="${product.id}"></td>
-                                        <td th:text="${product.barcode}"></td>
                                         <td th:text="${product.name}"></td>
+                                        <td th:text="${product.model}"></td>
+                                        <td th:text="${product.brand}"></td>
+                                        <td th:text="${product.option}"></td>
+                                        <td th:text="${product.size}"></td>
+                                        <td th:text="${product.category.name}"></td>
                                         <td th:text="${product.price}"></td>
                                         <td th:text="${product.stock}"></td>
+                                        <td th:text="${product.creationDate}"></td>
                                         <td><a th:href="@{'/delete/' + ${product.id}}"><i
                                                 class="fa fa-trash"></i></a>
                                         </td>

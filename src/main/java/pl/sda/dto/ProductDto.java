@@ -2,20 +2,35 @@ package pl.sda.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.Date;
+
 public class ProductDto {
 
     private int id;
-    private String model;
     private String name;
+    private String model;
     private String brand;
-    private String gender;
-    private long barcode;
+    private String option;
+    private String size;
+    private Long categoryId;
     private double price;
     private int stock;
     private String description;
     private MultipartFile picture;
+    private Date creationDate;
 
     public ProductDto() {
+    }
+
+    public String getImageStr() throws IOException {
+
+        byte [] byteArr = picture.getBytes();
+        String imageString = "data:image/png;base64," + Base64.getEncoder().encodeToString(byteArr);
+        return imageString;
     }
 
     public int getId() {
@@ -26,20 +41,20 @@ public class ProductDto {
         this.id = id;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getBrand() {
@@ -50,20 +65,28 @@ public class ProductDto {
         this.brand = brand;
     }
 
-    public String getGender() {
-        return gender;
+    public String getOption() {
+        return option;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setOption(String option) {
+        this.option = option;
     }
 
-    public long getBarcode() {
-        return barcode;
+    public String getSize() {
+        return size;
     }
 
-    public void setBarcode(long barcode) {
-        this.barcode = barcode;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public double getPrice() {
@@ -97,4 +120,13 @@ public class ProductDto {
     public void setPicture(MultipartFile picture) {
         this.picture = picture;
     }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
 }

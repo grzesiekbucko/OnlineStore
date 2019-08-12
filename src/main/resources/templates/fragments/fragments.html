@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>MX Store - Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="shortcut icon" href="../../static/images/logo.png"
+          th:href="@{../images/logo.png}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Css file -->
+    <link href="../../static/css/mainPage.css" rel="stylesheet" type="text/css"
+          th:href="@{../css/mainPage.css}">
+    <link href="../../static/css/product-card.css" rel="stylesheet" type="text/css"
+          th:href="@{../css/product-card.css}">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/820fbd52a1.js"></script>
+    <!-- Google Material-design Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid" id="container-main">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar" th:fragment="navbar">
+        <a class="navbar-brand" href="mainPage.html"><img src="../../static/images/logo.png"
+                                                          th:src="@{/images/logo.png}"/>MX Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                    <a class="nav-link" href="#helmets">Helmets</a>
+                </li>
+                <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <a class="nav-link" href="#boots">Boots</a>
+                </li>
+                <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <a class="nav-link" href="#jerseys" >Jerseys</a>
+                </li>
+                <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <a class="nav-link" href="#gloves">Gloves</a>
+                </li>
+                <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <a class="nav-link" href="#">Goggles</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li sec:authorize="isAnonymous()" class="nav-item active" data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                    <a class="navbar-brand myAccount" href="#">Register</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active" data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                    <div class="dropdown">
+                        <a sec:authorize="hasRole('ROLE_ADMIN')"
+                           class="navbar-brand myAccount dropdown-toggle" href="#"
+                           style="padding-right: 15px; font-size: 1rem;"
+                           role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"
+                           th:text="${#authentication.name}"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                             sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a class="dropdown-item" href="#" th:href="@{/admin/home}">Admin Panel</a>
+                            <a class="dropdown-item" href="#">My Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" th:href="@{/logout}">Log Out</a>
+                        </div>
+                        <a class="navbar-brand" href="#">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge badge-notify">4</span>
+                        </a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50" th:fragment="footer">
+        <div class="container text-center">
+            <small>Online store - project by Grzegorz B. - created for education purpose.</small>
+        </div>
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
+
+</body>
+</html>

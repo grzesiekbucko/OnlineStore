@@ -18,20 +18,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> showProduct() {
-        return productRepository.findAll();
-    }
 
-    public void save(Product product) {
-        productRepository.save(product);
-    }
 
-    public Product get(Long id){
-        return productRepository.findById(Math.toIntExact(id)).get();
 
-    }
 
-    public void delete(Long id) {
-        productRepository.deleteById(Math.toIntExact(id));
-    }
 }

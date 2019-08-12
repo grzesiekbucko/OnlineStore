@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MX Store - Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="shortcut icon" href="../../static/images/logo.png"
+          th:href="@{../images/logo.png}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Css file -->
+    <link href="../../static/css/mainPage.css" rel="stylesheet" type="text/css"
+          th:href="@{../css/mainPage.css}">
+    <link href="../../static/css/product-card.css" rel="stylesheet" type="text/css"
+          th:href="@{../css/product-card.css}">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/820fbd52a1.js"></script>
+    <!-- Google Material-design Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid" id="container-main">
+    <nav th:insert="fragments/fragments :: navbar"></nav>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-10" style="padding-top: 100px; font-size: 0.8rem">
+            <span>HOME</span><span
+                th:utext="${'&ensp; > &ensp;' + product.category.name + '&ensp; > &ensp;'}"></span><span
+                th:utext="${product.name}"></span>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4" id="image-wrapper">
+            <img th:src="${picture}" class="img-fluid"
+                 alt="">
+        </div>
+        <div class="col-md-4 mb-4 row" id="price-column-wrapper">
+            <div class="col-3">
+            </div>
+            <div class="product-details col-md-8">
+                <div class="titles col-12">
+                    <h2 style="font-weight: bold; text-transform: uppercase;" th:utext="${product.name}"></h2>
+                    <h5 th:utext="${product.model}"></h5>
+                    <h5 th:utext="${product.option}"></h5>
+                </div>
+                <div class="sizes col-12 vertical-list">
+                    <h5><strong>Sizes</strong></h5>
+                    <ul >
+                        <li >
+                            <a style="border: solid 1px #000000; font-weight: bold" href="" th:text="${product.size}"></a>
+                        </li>
+                        <li th:each="productModel : ${categoryProd}">
+                            <a th:if="${product.size}!= ${productModel.size}"
+                               th:href="@{'/preview/' + ${productModel.getId()}}" th:text="${productModel.size}"></a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="price col-12">
+                    <span class="badge badge-primary">New</span>
+                    <h2 style="font-weight: bold" th:utext="${'$ ' + product.price}"></h2>
+                    <h5 style="text-decoration: line-through; font-size: 1.3rem; color: #00aeef">$ 179.95</h5>
+                    <button type="button" class="btn btn-dark"
+                            style="margin-left: 10px; margin-right: auto; margin-top: 15px; box-shadow: none;">Add to
+                        Cart
+                    </button>
+                </div>
+                <div class="other col-12 vertical-list">
+                    <h5>Other Colors</h5>
+                    <ul th:if="${categoryProd != null}">
+                        <li th:each="prod : ${categoryProd}">
+                            <a href="#" th:href="@{'/preview/' + ${prod.getId()}}"><img
+                                    th:src="${prod.getImageString()}" class="img-fluid" alt=""></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-12 justify-content-center">
+        <div class="col-md-8 col-12" id="description">
+            <h5><strong>Description</strong></h5>
+            <span th:utext="${product.description}">
+            </span>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12" style="background-color: #f2f2f2; height: 200px">
+
+        </div>
+
+    </div>
+    <footer th:insert="fragments/fragments :: footer"></footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
+
+</body>
+</html>
